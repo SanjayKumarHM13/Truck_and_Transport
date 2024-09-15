@@ -1,16 +1,16 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
-import './Header.css';
+import { Link } from 'react-router-dom';
+import './Header.css'; // Assuming you have styling for the navbar
 
-function Header() {
-
+function Navbar() {
   return (
     <div className="navbar">
       <div className="navbar-logo">
-        <h1>Vehicle Registration Form</h1>
+        <Link to="/vehicle-registration" className="navbar-link">Vehicle Registration Form</Link>
+        <Link to="/user-registration" className="navbar-link">User Registration Form</Link>
       </div>
     </div>
   );
-};
+}
 
-export default Header;
+export default Navbar;

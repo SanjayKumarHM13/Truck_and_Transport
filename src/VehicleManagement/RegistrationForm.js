@@ -11,7 +11,7 @@ const VehicleRegistrationForm = () => {
     ownerName: '',
     address: '',
     vehicleType: 'Truck',
-    Model:'',
+    Model: '',
     fuelType: '',
     color: '',
     make: ''
@@ -19,19 +19,41 @@ const VehicleRegistrationForm = () => {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  // Generate random chassis number
   function generateChassisNumber() {
     return Math.random().toString(36).substring(2, 12).toUpperCase();
   }
 
+  // Handle form input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  // Handle form submission
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitted(true); // Set form submission state to true
+    try {
+      const response = await fetch('http://localhost:5000/api/registerVehicle', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert('Vehicle Registered Successfully');
+        setIsSubmitted(true); // Set form submission state to true
+      } else {
+        alert('Error registering vehicle');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred while registering the vehicle.');
+    }
   };
 
+  // Reset form for adding a new vehicle
   const handleAddNewVehicle = () => {
     setFormData({
       registerNumber: '',
@@ -42,7 +64,7 @@ const VehicleRegistrationForm = () => {
       ownerName: '',
       address: '',
       vehicleType: 'Truck',
-      Model:'',
+      Model: '',
       fuelType: '',
       color: '',
       make: ''
@@ -50,8 +72,10 @@ const VehicleRegistrationForm = () => {
     setIsSubmitted(false); // Reset the submission state
   };
 
+  // Close form
   const handleClose = () => {
     alert('Closing form...');
+    // Add any additional logic for closing the form
   };
 
   return (

@@ -1,24 +1,23 @@
-/* Body styling */
+/* Body styling for full-screen background and centered form */
 body {
     margin: 0;
     padding: 0;
+    align-items: center;
     background-color: #f4f4f4;
     font-family: 'Arial', sans-serif;
     min-height: 100vh;
     box-sizing: border-box;
-    padding-top: 70px;
 }
 
 /* Container for the form */
 .form-container {
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    min-height: calc(100vh - 70px); /* Full viewport height minus navbar height */
+    height: 100%;
     background-color: #f0f0f0;
-    padding: 20px; /* Padding to ensure content doesn’t touch edges */
-    box-sizing: border-box;
+    padding-top: 70px;
 }
 
 /* Form styling */
@@ -30,21 +29,21 @@ form {
     max-width: 1200px;
     width: 100%;
     display: flex;
-    gap: 20px;
+    gap: 20px; /* Gap between columns */
     flex-wrap: wrap;
 }
 
 /* Two-column layout */
 .form-column {
-    flex: 1;
+    flex: 1; /* Ensure the form takes up equal space for both columns */
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
-/* Styling for form elements */
+/* Reduce the width of the input fields */
 form input, form textarea {
-    width: 90%;
+    width: 90%; /* Adjusted width of input fields */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -52,6 +51,7 @@ form input, form textarea {
     box-sizing: border-box;
 }
 
+/* Form heading */
 form h2 {
     width: 100%;
     text-align: center;
@@ -60,12 +60,14 @@ form h2 {
     color: #333;
 }
 
+/* Styling for form labels and inputs */
 form .form-group {
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
 }
 
+/* Label styling */
 form label {
     margin-bottom: 4px;
     color: #555;
@@ -73,10 +75,12 @@ form label {
     font-size: 16px;
 }
 
+/* Textarea styling */
 form textarea {
     resize: vertical;
 }
 
+/* Full-width button at the bottom */
 .button-container {
     display: flex;
     justify-content: space-between;
@@ -84,6 +88,7 @@ form textarea {
     width: 100%;
 }
 
+/* Button styling */
 form button {
     width: 48%;
     padding: 18px;
@@ -96,6 +101,7 @@ form button {
     transition: background-color 0.3s ease;
 }
 
+/* Button hover effect */
 form button:hover {
     background-color: #555;
 }

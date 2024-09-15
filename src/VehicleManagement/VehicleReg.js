@@ -10,9 +10,7 @@ function VehicleRegistration() {
         <div className='head g-col-12'>
           <Header />
         </div>
-        {/* <div className="container g-col-12"> */}
           <RegistrationForm />
-        {/* </div> */}
     </div>
   );
 }
