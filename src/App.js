@@ -9,7 +9,9 @@ function App() {
   return (
     <Router>
       <div>
-        <Navbar />
+        <div>
+          <Navbar />
+        </div>
         <div className="content">
           <Routes>
             <Route path="/vehicle-registration" element={<VehicleRegistrationForm />} />
