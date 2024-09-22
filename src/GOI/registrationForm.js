@@ -1,17 +1,20 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom";
+
 import Navbar from "./NavBar";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import VehicleRegistrationForm from "./VehicleManagement/RegistrationForm";
+import VehicleRegistrationForm from "./VehicleManagement/VehicleReg";
 import UserRegistrationForm from "./UserManagement/UserRegistrationForm";
+
+import './RegistrationForm.css';
+import '../globalVar.css';
 
 function RegistrationForm() {
   return (
-    <Router>
-      <div className="grid">
-        <div className="head g-col-12">
+      <div className="grid" id="registrationForm">
+        <div className="container navBar">
           <Navbar />
         </div>
-        <div className="container g-col-12">
+        <div className="container formBody">
           <Routes>
             <Route
               path="/vehicle-registration"
@@ -24,7 +27,6 @@ function RegistrationForm() {
           </Routes>
         </div>
       </div>
-    </Router>
   );
 }
 

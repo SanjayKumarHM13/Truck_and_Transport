@@ -1,5 +1,4 @@
 import React from 'react';
-
 import RegistrationForm from './GOI/registrationForm';
 
 function App() {
