@@ -2,11 +2,8 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./NavBar";
-import VehicleRegistrationForm from "./VehicleManagement/VehicleReg";
-import UserRegistrationForm from "./UserManagement/UserRegistrationForm";
-
-import './RegistrationForm.css';
-import '../globalVar.css';
+import VehicleRegistrationForm from "./VehicleReg";
+import UserRegistrationForm from "./UserRegistrationForm";
 
 function RegistrationForm() {
   return (

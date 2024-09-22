@@ -1,4 +1,4 @@
-@import '../globalVar.css';
+@import '../../globalVar.css';
 
 .navbar {
     height: var(--header);

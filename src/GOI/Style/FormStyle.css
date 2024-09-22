@@ -1,4 +1,4 @@
-@import '../globalVar.css';
+@import '../../globalVar.css';
 
 .form-container {
   margin-top: var(--header);
