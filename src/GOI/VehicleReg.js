@@ -7,7 +7,7 @@ const VehicleRegistrationForm = () => {
     dateOfRegistration: "",
     registrationValidity: "",
     chassisNumber: generateChassisNumber(),
-    engineNumber: "",
+    engineNumber: generateEngineNumber(), // Use generated engine number
     ownerName: "",
     address: "",
     vehicleType: "Truck",
@@ -19,17 +19,18 @@ const VehicleRegistrationForm = () => {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // Generate random chassis number
   function generateChassisNumber() {
     return Math.random().toString(36).substring(2, 12).toUpperCase();
   }
 
-  // Handle form input changes
+  function generateEngineNumber() {
+    return Math.random().toString(36).substring(2, 12).toUpperCase();
+  }
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -46,13 +47,15 @@ const VehicleRegistrationForm = () => {
 
       if (response.ok) {
         alert("Vehicle Registered Successfully");
-        setIsSubmitted(true); // Set form submission state to true
+        setIsSubmitted(true);
       } else {
         alert("Error registering vehicle");
       }
     } catch (error) {
       console.error("Error:", error);
       alert("An error occurred while registering the vehicle.");
+    } finally {
+      setIsSubmitted(true);
     }
   };
 
@@ -63,7 +66,7 @@ const VehicleRegistrationForm = () => {
       dateOfRegistration: "",
       registrationValidity: "",
       chassisNumber: generateChassisNumber(),
-      engineNumber: "",
+      engineNumber: generateEngineNumber(), // Generate new engine number
       ownerName: "",
       address: "",
       vehicleType: "Truck",
@@ -72,7 +75,7 @@ const VehicleRegistrationForm = () => {
       color: "",
       make: "",
     });
-    setIsSubmitted(false); // Reset the submission state
+    setIsSubmitted(false);
   };
 
   // Close form
