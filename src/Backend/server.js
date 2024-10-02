@@ -4,26 +4,30 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 
 const app = express();
-const port = 3000;
+const port = 3000; // Or 5000 depending on frontend
 
 app.use(cors());
 app.use(bodyParser.json());
 
-// MongoDB Connection
-const mongoURI = 'mongodb://localhost:27017';
+// MongoDB Connection using Sanjay user and GOI database
+const mongoURI = 'mongodb://localhost:27017/';
 mongoose.connect(mongoURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+  dbName: 'GOI',
+  // useNewUrlParser: true,
+  // useUnifiedTopology: true,
+  // authSource: 'admin', // Needed if using authentication
+  // user: 'Sanjay',
+  // pass: 'sanjay13',
 });
 
-// Check connection
+// Check MongoDB connection
 mongoose.connection.once('open', () => {
-  console.log('Connected to MongoDB');
+  console.log('Connected to MongoDB database GOI');
 }).on('error', (error) => {
   console.error('MongoDB connection error:', error);
 });
 
-// Create a Vehicle Schema using Mongoose
+// Define Vehicle Schema and map it to Vehicle_list collection
 const vehicleSchema = new mongoose.Schema({
   registerNumber: { type: String, required: true },
   dateOfRegistration: { type: Date, required: true },
@@ -33,17 +37,17 @@ const vehicleSchema = new mongoose.Schema({
   ownerName: { type: String, required: true },
   address: { type: String, required: true },
   vehicleType: { type: String, required: true },
-  Model: { type: String, required: true },
+  model: { type: String, required: true }, // Ensure lowercase
   fuelType: { type: String, required: true },
   color: { type: String, required: true },
   make: { type: String, required: true },
-});
+}, { collection: 'Vehicle' }); // Explicitly using Vehicle_list collection
 
-// Create a Vehicle model from the schema
+// Create the Vehicle model
 const Vehicle = mongoose.model('Vehicle', vehicleSchema);
 
 // Route to register a vehicle
-app.post('/api/registerVehicle', async (req, res) => {
+app.post('/vehicle-registration', async (req, res) => {
   const {
     registerNumber,
     dateOfRegistration,
@@ -53,7 +57,7 @@ app.post('/api/registerVehicle', async (req, res) => {
     ownerName,
     address,
     vehicleType,
-    Model,
+    model,
     fuelType,
     color,
     make,
@@ -61,14 +65,14 @@ app.post('/api/registerVehicle', async (req, res) => {
 
   const newVehicle = new Vehicle({
     registerNumber,
-    dateOfRegistration,
-    registrationValidity,
+    dateOfRegistration: new Date(dateOfRegistration), // Ensure valid date format
+    registrationValidity: new Date(registrationValidity), // Ensure valid date format
     chassisNumber,
     engineNumber,
     ownerName,
     address,
     vehicleType,
-    Model,
+    model,
     fuelType,
     color,
     make,
@@ -79,7 +83,7 @@ app.post('/api/registerVehicle', async (req, res) => {
     res.status(201).send('Vehicle Registered Successfully');
   } catch (error) {
     console.error('Error saving vehicle:', error);
-    res.status(500).send('Error saving vehicle');
+    res.status(500).json({ message: 'Error saving vehicle', error: error.message });
   }
 });
 

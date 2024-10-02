@@ -35,7 +35,7 @@ const VehicleRegistrationForm = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        "http://localhost:5000/api/registerVehicle",
+        "http://localhost:3000/vehicle-registration",
         {
           method: "POST",
           headers: {
